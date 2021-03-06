@@ -9,7 +9,6 @@ my local env setup for Mac. including shell cli short cut. brew package ..
 | ----------- | ----------- |
 | Ctrl + A   | Go to the beginning of the line you are currently typing on.  This also works for most text input fields system wide.  Netbeans being one exception |
 | Ctrl + E   | Go to the end of the line you are currently typing on.  This also works for most text input fields system wide.  Netbeans being one exception |
-
 | Ctrl + Q   | Clears the line |
 | Ctrl + L   | Clears the Screen |
 | Cmd + K    | Clears the Screen |
