@@ -9,7 +9,6 @@ my local env setup for Mac. including shell cli short cut. brew package ..
 | ----------- | ----------- |
 | Ctrl + A   | Go to the beginning of the line you are currently typing on.  This also works for most text input fields system wide.  Netbeans being one exception |
 | Ctrl + E   | Go to the end of the line you are currently typing on.  This also works for most text input fields system wide.  Netbeans being one exception |
-| Ctrl + Q   | Clears the line |
 | Ctrl + L   | Clears the Screen |
 | Cmd + K    | Clears the Screen |
 | Ctrl + U   | Cut everything backwards to beginning of line |
@@ -83,6 +82,17 @@ my local env setup for Mac. including shell cli short cut. brew package ..
 | !! |  Execute the last command typed |
 | !!:p |  Print to the console the last command typed |
 
+
+### Folder path history
+
+```
+dirs -v
+pushd
+popd
+cd ~2
+
+```
+
 ### FILE MANAGEMENT
 
 | Key/Command | Description |
@@ -130,6 +140,150 @@ my local env setup for Mac. including shell cli short cut. brew package ..
 | mdfind [search_pattern] | Spotlight search for files (names, content, other metadata), e.g. `mdfind skateboard` |
 | mdfind -onlyin [dir] -name [pattern] | Spotlight search for files named like pattern in the given directory |
 
+### Find usage
+
+```
+find​​ ​​~​​ ​​-maxdepth​​ ​​2​​ ​​-iname​​ ​​"*r*.md"​ // find name ignore case folder depth 2
+find​​ ​​/var/log​​ ​​-mmin​​ ​​-30​​ ​​-exec​​ ​​ls​​ ​​-ldh​​ ​​{}​​ ​​\;  // find log in 30min with ls -l
+find​​ ​​/var/log​​ ​​-mmin​​ ​​-30​​ ​​-exec​​ ​​ls​​ ​​-ldh​​ ​​{}​​ ​​+  // find log in 30min with ls -l group 
+
+```
+
+### Disk MANAGEMENT
+
+```
+df -h
+
+du -h
+
+du -sh
+
+du -h -d 1
+
+```
+
+### File MANAGEMENT
+
+```
+touch filename
+
+touch​​ ​​files/docs/markdown/chapter{1..3}.md //
+
+stat file // file details
+
+echo "content"  > filename
+
+echo "append content" >> filename
+
+cat > filename // enter or cmd + d save
+
+cat file1 file2 // combine files
+
+cat file1 file2 > newfile
+
+cat filename | pbcpy // copy to clicpboard
+
+pbpaste > file // copy from clipboard
+
+more
+
+less
+
+head -n 3
+
+tail -n 10  // 
+
+tail -f 
+
+```
+
+### GNU tools
+
+```
+cat​​ ​​brew-list.md ​​|​​ ​​xargs​​ ​​brew install​​ ​​
+
+```
+
+Excerpt From: Brian P. Hogan. “Small, Sharp Software Tools.” Apple Books. 
+
+brew​​ ​​install​​ ​​coreutils 
+
+​​brew​​ ​​install​​ ​​diffutils​
+
+​​brew​​ ​​install​​ ​​findutils​
+
+brew​​ ​​install​​ ​​awk​
+
+​​brew​​ ​​install​​ ​​gnu-sed​
+
+brew​​ ​​install​​ ​​grep​
+
+brew​​ ​​install​​ ​​nano​​ ​​git​​ ​​less
+
+brew​​ ​​install​​ ​​jq​
+
+
+
+
+```
+
+grep "key" file // show line contain key
+
+grep "key" -v file // show line not contain key
+
+history​​ ​​|​​ ​​grep​​ ​​'ls'​​ ​​|​​ ​​grep​​ ​​-v​​ ​​'grep'​
+
+grep '^key' file
+
+grep 'key$' file
+
+grep -E 'key1|key2' file
+
+echo​​ ​​'hello world'​​ ​​|​​ ​​cut​​ ​​-c​​ ​​2-4​  // ell
+
+echo​​ ​​'hello world'​​ ​​|​​ ​​cut​​ ​​-c​​ ​​-5​  // hello
+
+echo​​ ​​'hello world'​​ ​​|​​ ​​cut​​ ​​-c​​ ​​7-​ // world
+
+cut​​ ​​-d​​ ​​','​​ ​​-f​​ ​​3​​ ​​csv.txt​ // a,b,c  => c 
+
+sort file 
+
+sort -r file // reverse
+
+echo​​ ​​"Hello World"​​ ​​|​​ ​​sed​​ ​​-e​​ ​​'s/Hello/Hi/'​  // replace hello to Hi
+
+sed -e 's/Hello/Hi/g' 
+
+sed​​ ​​-e​​ ​​'s/http:/https:/'​​ ​​file​
+
+​​sed​​ ​​-e​​ ​​'/./s/^/#/'​​ ​​file. // add # in front 
+
+​​sed​​ ​​-e​​ ​​'/./s/^#//'​​” // remove # in front
+
+sed​​ ​​-e​​ ​​'/\*.*\*/s/\*/_/g'​​ ​​file  // replace * piars with _ 
+
+​​sed​​ ​​-e​​ ​​'1 {s/^/#/}'​​ ​​file // line 1 . 
+
+sed​​ ​​-e​​ ​​'1,3 {s/^/#/}'​​ ​​file  // line 1 - 3
+
+​​sed​​ ​​-e​​ ​​'1i\something'​​ ​​file // add to line 1
+
+sed​​ ​​-e​​ ​​'$a\something'​​ ​​file // append to file  i insert a append c change d delete
+
+sed​​ ​​-e​​ ​​'/TAGS/{r source.txt'​​ ​​-e​​ ​​'d}'​​ ​​target.txt
+
+
+
+ 
+
+history​​ ​​|​​ ​​awk​​ ​​'{c[$2]++}END{for(i in c){print c[i] " " i}}'​​ ​​|​​ ​​sort​​ ​​-rn​​ ​​|​​ ​​head​ | tee -a cmd.txt  //to file and console
+
+
+
+
+```
+
 ### HELP
 
 | Key/Command | Description |
@@ -141,7 +295,19 @@ my local env setup for Mac. including shell cli short cut. brew package ..
 | whatis [command] | Gives a one-line description of [command] |
 | apropos [search-pattern] | Searches for command with keywords in description |
 
-### GIT
+### handy cli 
+
+```
+bc //calculator
+
+htop //top improve
+
+lsof -i // net tcp
+
+
+
+```
+## GIT
 
 ### Glossary
 
